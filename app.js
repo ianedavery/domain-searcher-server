@@ -19,10 +19,6 @@ app.use(function (req, res, next) {
   next();
 });
 
-app.use('*', (req, res) => {
-  return res.status(404).json({message: 'Not Found'});
-});
-
 app.get('/:domain', (req, res) => {
   	request.get(`https://api.ote-godaddy.com/v1/domains/available?domain=${req.params.domain}&checkType=FULL&forTransfer=false/`)    
     	.set({Accept: 'application/json', Authorization: `sso-key ${sso_key}`})
@@ -32,6 +28,10 @@ app.get('/:domain', (req, res) => {
     	.catch(err => {
     		res.status(500).json(JSON.parse(err.response.text));
     	})
+});
+
+app.use('*', (req, res) => {
+  return res.status(404).json({message: 'Not Found'});
 });
 
 app.listen(process.env.PORT || 3000, function(){
