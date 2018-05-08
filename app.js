@@ -19,6 +19,10 @@ app.use(function (req, res, next) {
   next();
 });
 
+app.get('/', (req,res) => {
+  res.json({oh: 'hello'});
+});
+
 app.get('/:domain', (req, res) => {
   	request.get(`https://api.ote-godaddy.com/v1/domains/available?domain=${req.params.domain}&checkType=FULL&forTransfer=false/`)    
     	.set({Accept: 'application/json', Authorization: `sso-key ${sso_key}`})
@@ -28,6 +32,6 @@ app.get('/:domain', (req, res) => {
     	.catch(err => {
     		res.status(500).json(JSON.parse(err.response.text));
     	})
-})
+});
 
 //app.listen(8080);
