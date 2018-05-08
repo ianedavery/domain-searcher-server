@@ -19,8 +19,8 @@ app.use(function (req, res, next) {
   next();
 });
 
-app.get('/', (req,res) => {
-  res.json({oh: 'hello'});
+app.use('*', (req, res) => {
+  return res.status(404).json({message: 'Not Found'});
 });
 
 app.get('/:domain', (req, res) => {
