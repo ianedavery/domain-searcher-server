@@ -4,7 +4,6 @@ const request = require('superagent');
 require('dotenv').config();
 
 let sso_key = process.env.SSO_KEY;
-    console.log(sso_key);
 
 
 const app = express();
@@ -26,6 +25,8 @@ app.get('/:domain', (req, res) => {
     	.set({Accept: 'application/json', Authorization: `sso-key 3mM44UYhVC4J3w_TkTtwSEqWbdt1koSVZPB7S:TkTvzYV3JoQ4U8YzdeBuf2`})
     	.then(data => {
     		res.json(JSON.parse(data.text));
+            console.log(sso_key);
+
     	})
     	.catch(err => {
     		res.status(500).json(JSON.parse(err.response.text));
