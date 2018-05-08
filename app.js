@@ -20,8 +20,9 @@ app.use(function (req, res, next) {
 });
 
 app.get('/:domain', (req, res) => {
+    console.log(sso_key);
   	request.get(`https://api.ote-godaddy.com/v1/domains/available?domain=${req.params.domain}&checkType=FULL&forTransfer=false/`)    
-    	.set({Accept: 'application/json', Authorization: `sso-key ${sso_key}`})
+    	.set({Accept: 'application/json', Authorization: `sso-key 3mM44UYhVC4J3w_TkTtwSEqWbdt1koSVZPB7S:TkTvzYV3JoQ4U8YzdeBuf2`})
     	.then(data => {
     		res.json(JSON.parse(data.text));
     	})
