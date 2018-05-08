@@ -19,7 +19,7 @@ app.use(function (req, res, next) {
 
 app.get('/:domain', (req, res) => {
   	request.get(`https://api.ote-godaddy.com/v1/domains/available?domain=${req.params.domain}&checkType=FULL&forTransfer=false/`)    
-    	.set({Accept: 'application/json', Authorization: `sso-key ${process.env.SSO_KEY}`})
+    	.set({Accept: 'application/json', Authorization: 'sso-key ' + process.env.SSO_KEY})
     	.then(data => {
     		res.json(JSON.parse(data.text));
     	})
