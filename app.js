@@ -3,8 +3,6 @@ const logger = require('morgan');
 const request = require('superagent');
 require('dotenv').config();
 
-let sso_key = process.env.SSO_KEY;
-
 const app = express();
 
 app.use(logger('dev'));
